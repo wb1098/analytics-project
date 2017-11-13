@@ -31,11 +31,16 @@ $(document).ready(function (event) {
     $(window).on('beforeunload', function (event) {
         var leavingTime = event.timeStamp;
         var scrollTopVal = event.target.scrollingElement.scrollTop;
+        var winheight = $(window).height()
+        var docheight = $(document).height()
+        var scrollTop = $(window).scrollTop()
+        var trackLength = docheight - winheight
+        
 
         console.log((leavingTime / oneMinute).toFixed(2), 'Minutes on Page');
         console.log(`They scrolled ${scrollTopVal} pixels down the page`)
 
-        var scrollPerc = (100 * (scrollTopVal / event.target.scrollingElement.scrollTopMax)).toFixed(2);
+        var scrollPerc = (100 * (scrollTopVal / trackLength)).toFixed(2);
         console.log('Scroll Percentage: ', scrollPerc + '%');
 
         if (vowelCnt > 0) {
